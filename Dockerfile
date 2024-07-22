@@ -22,4 +22,4 @@ FROM base
 COPY --from=build /app /app
 
 EXPOSE 3000
-CMD [ "bun", "example" ]
+CMD [ "bun", "start" ]
