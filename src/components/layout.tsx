@@ -13,7 +13,7 @@ export function Layout({
         <head>
           <title>{title}</title>
           <meta charset="UTF-8" />
-          <meta name="viewport"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico" />
           <meta
             name="keywords"
@@ -48,6 +48,9 @@ export function Layout({
           <link rel="stylesheet" href="/static/styles.css" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          {process.env.NODE_ENV !== "production" && (
+            <script src="/static/livereload.js"></script>
+          )}
         </head>
 
         <body className="bg-black text-white">
