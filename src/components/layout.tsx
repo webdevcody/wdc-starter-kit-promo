@@ -57,18 +57,17 @@ export function Layout({
           {children}
           <Footer />
 
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                document.addEventListener('DOMContentLoaded', (event) => {
-                    var fontLink = document.createElement('link');
-                    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap';
-                    fontLink.rel = 'stylesheet';
-                    document.head.appendChild(fontLink);
-                  });
-                `,
-            }}
-          ></script>
+          {html`
+            <script>
+              document.addEventListener("DOMContentLoaded", (event) => {
+                var fontLink = document.createElement("link");
+                fontLink.href =
+                  "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap";
+                fontLink.rel = "stylesheet";
+                document.head.appendChild(fontLink);
+              });
+            </script>
+          `}
         </body>
       </html>
     </>
