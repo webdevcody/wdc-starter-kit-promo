@@ -1,6 +1,6 @@
 import { Lines } from "../components/lines";
 import { Layout } from "../components/layout";
-import type { App } from "..";
+import type { App } from "../server";
 
 export function SubscribedPage() {
   return (

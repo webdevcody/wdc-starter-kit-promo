@@ -13,6 +13,7 @@ export function Layout({
         <head>
           <title>{title}</title>
           <meta charset="UTF-8" />
+          <meta name="viewport"></meta>
           <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico" />
           <meta
             name="keywords"
@@ -47,15 +48,24 @@ export function Layout({
           <link rel="stylesheet" href="/static/styles.css" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-            rel="stylesheet"
-          ></link>
         </head>
 
         <body className="bg-black text-white">
           {children}
           <Footer />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    var fontLink = document.createElement('link');
+                    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap';
+                    fontLink.rel = 'stylesheet';
+                    document.head.appendChild(fontLink);
+                  });
+                `,
+            }}
+          ></script>
         </body>
       </html>
     </>

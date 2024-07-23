@@ -25,8 +25,8 @@
   },
   "scripts": {
     "dev": "run-p server tailwind",
-    "server": "npm run db:migrate && bun --watch src/index.tsx",
-    "start": "npm run db:migrate && bun src/index.tsx",
+    "server": "npm run db:migrate && bun --watch src/server.tsx",
+    "start": "npm run db:migrate && bun src/server.tsx",
     "tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css --watch",
     "build:tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css",
     "db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",

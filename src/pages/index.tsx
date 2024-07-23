@@ -5,7 +5,7 @@ import { database } from "../db";
 import { newsletters } from "../db/schema";
 import { Resend } from "resend";
 import { env } from "../env";
-import type { App } from "..";
+import type { App } from "../server";
 import { z } from "zod";
 const resend = new Resend(env.EMAIL_SERVER_PASSWORD);
 
