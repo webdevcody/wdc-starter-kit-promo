@@ -3,9 +3,19 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "@libsql/client": "^0.7.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.23.0",
+    "drizzle-orm": "^0.32.0",
+    "eslint": "^9.7.0",
     "hono": "^4.5.0",
     "npm-run-all": "^4.1.5",
-    "tailwindcss": "^3.4.6"
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "resend": "^3.5.0",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss": "^3.4.6",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -15,9 +25,13 @@
   },
   "scripts": {
     "dev": "run-p server tailwind",
-    "server": "bun --watch src/index.tsx",
-    "start": "bun src/index.tsx",
+    "server": "npm run db:migrate && bun --watch src/index.tsx",
+    "start": "npm run db:migrate && bun src/index.tsx",
     "tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css --watch",
-    "build:tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css"
+    "build:tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css",
+    "db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
+    "db:migrate": "bun ./src/db/migrate.ts",
+    "db:generate": "drizzle-kit generate:sqlite --config=drizzle.config.ts",
+    "db:studio": "drizzle-kit studio"
   }
 }

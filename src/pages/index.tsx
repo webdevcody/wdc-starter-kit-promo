@@ -1,59 +1,30 @@
-import {
-  DiscordIcon,
-  GithubIcon,
-  XIcon,
-  YoutubeIcon,
-} from "../components/icons";
+import { Lines } from "../components/lines";
+import { Layout } from "../components/layout";
+import { cn, popFlashMessage, setFlashMessage } from "../util";
+import { database } from "../db";
+import { newsletters } from "../db/schema";
+import { Resend } from "resend";
+import { env } from "../env";
+import type { App } from "..";
+import { z } from "zod";
+const resend = new Resend(env.EMAIL_SERVER_PASSWORD);
 
-function Lines() {
+export function MainPage({ flashMessage }: { flashMessage?: string }) {
   return (
-    <svg
-      class="absolute inset-0 z-10 h-full w-full stroke-slate-800"
-      aria-hidden="true"
-    >
-      <defs>
-        <pattern
-          id="0787a7c5-978c-4f66-83c7-11c213f99cb7"
-          width="230"
-          height="230"
-          x="50%"
-          y="-1"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M.5 230V.5H230" fill="none"></path>
-        </pattern>
-      </defs>
-      <rect
-        width="100%"
-        height="100%"
-        strokeWidth="0"
-        fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
-      ></rect>
-    </svg>
-  );
-}
-
-export function Main() {
-  return (
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <title>Parabola</title>
-        <link rel="stylesheet" href="/static/styles.css" />
-      </head>
-      <body className="text-white bg-black">
-        <section class="relative min-h-screen gap-8 bg-gradient-to-b pt-12 shadow-md from-slate-900 to-slate-800">
+    <Layout>
+      <>
+        <section class="relative min-h-screen gap-8 bg-gradient-to-b from-slate-900 to-slate-800 pt-12 shadow-md">
           <Lines />
-          <div class="relative z-20 container mx-auto py-4">
-            <div class="flex justify-between items-center">
+          <div class="container relative z-20 mx-auto py-4">
+            <div class="flex items-center justify-between">
               <div class="flex items-center">
-                <a href="/" class="hover:text-blue-100 flex gap-1 items-center">
+                <a href="/" class="flex items-center gap-1 hover:text-blue-100">
                   <img
                     src="/static/wdc.jpeg"
                     width="60"
                     height="60"
                     alt="hero image"
-                    class="rounded-full w-16 h-16 mr-4"
+                    class="mr-4 h-16 w-16 rounded-full"
                   />
                   <div class="flex flex-col">
                     <div class="text-xs sm:text-xl">Coming Soon...</div>
@@ -81,20 +52,29 @@ export function Main() {
 
                 <p class="mb-4 text-3xl">Get Notified When I Launch 🚀</p>
 
-                <form class="flex gap-2">
+                <form action="/" method="POST" class="flex gap-2">
                   <label class="sr-only" htmlFor="email" />
                   <input
                     required
                     type="email"
                     name="email"
-                    class="w-full py-2 px-2 rounded text max-w-[320px] bg-slate-100 text-slate-900 placeholder-slate-600"
+                    class={cn(
+                      "text w-full max-w-[320px] rounded bg-slate-100 px-2 py-2 text-slate-900 placeholder-slate-600",
+                      {
+                        "border-2 border-red-500": !!flashMessage,
+                      },
+                    )}
                     id="email"
                     placeholder="Enter your email address"
                   />
-                  <button class="rounded bg-slate-100 text-black flex gap-2 items-center justify-center px-3">
+                  <button class="flex items-center justify-center gap-2 rounded bg-slate-100 px-3 text-black hover:bg-slate-300">
                     Subscribe
                   </button>
                 </form>
+
+                {flashMessage && (
+                  <div class="mb-4 text-red-500">{flashMessage}</div>
+                )}
               </div>
 
               <div class="col-span-1"></div>
@@ -166,30 +146,41 @@ export function Main() {
             </p>
           </div>
         </section>
-
-        <section className="relative py-12 bg-gradient-to-b dark:from-slate-950 dark:to-slate-800 from-green-200 to-blue-100">
-          <Lines />
-
-          <div className="z-20 relative flex flex-col items-center gap-8 ">
-            <div className="text-xl">Follow for updates!</div>
-
-            <div className="flex justify-center gap-8">
-              <a href="https://youtube.com/@webdevcody" target="_blank">
-                <YoutubeIcon className="w-10 h-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
-              </a>
-              <a href="https://x.com/webdevcody" target="_blank">
-                <XIcon className="w-10 h-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
-              </a>
-              <a href="https://github.com/webdevcody" target="_blank">
-                <GithubIcon className="w-10 h-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
-              </a>
-              <a href="https://discord.gg/4kGbBaa" target="_blank">
-                <DiscordIcon className="w-10 h-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
-              </a>
-            </div>
-          </div>
-        </section>
-      </body>
-    </html>
+      </>
+    </Layout>
   );
+}
+
+export function registerLanding(app: App) {
+  app.get("/", (c) => {
+    const flashMessage = popFlashMessage(c);
+    return c.html(<MainPage flashMessage={flashMessage} />);
+  });
+
+  app.post("/", async (c) => {
+    const body = await c.req.formData();
+    const email = body.get("email") as string;
+
+    const { success } = z.string().email().safeParse(email);
+
+    if (!success) {
+      setFlashMessage(c, "Invalid email address");
+      return c.redirect("/");
+    }
+
+    await database
+      .insert(newsletters)
+      .values({
+        email,
+      })
+      .onConflictDoNothing();
+
+    const { error } = await resend.contacts.create({
+      email,
+      unsubscribed: false,
+      audienceId: env.RESEND_AUDIENCE_ID,
+    });
+
+    return c.redirect("/subscribed");
+  });
 }
