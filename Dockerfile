@@ -5,6 +5,11 @@ WORKDIR /app
 
 ENV NODE_ENV="production"
 
+ARG DATABASE_URL
+ARG DATABASE_AUTH_TOKE
+ARG RESEND_AUDIENCE_I
+ARG EMAIL_SERVER_PASSWORD
+
 FROM base as build
 
 RUN apt-get update -qq && \
