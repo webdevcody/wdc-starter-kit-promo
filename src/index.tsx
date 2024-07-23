@@ -11,6 +11,10 @@ app.use("/static/*", serveStatic({ root: "./" }));
 app.use("/favicon.ico", serveStatic({ path: "./static/favion.ico" }));
 app.use("/robots.tsx", serveStatic({ path: "./static/robots.txt" }));
 app.use("/sitemap.xml", serveStatic({ path: "./static/sitemap.xml" }));
+app.use(
+  "/starterkitcard.png",
+  serveStatic({ path: "./static/starterkitcard.png" }),
+);
 
 registerLanding(app);
 registerSubscribed(app);
