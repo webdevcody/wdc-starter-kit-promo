@@ -14,8 +14,10 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
   return (
     <Layout>
       <>
+        {/* hero */}
         <section class="relative min-h-screen gap-8 bg-gradient-to-b from-slate-900 to-slate-800 pt-12 shadow-md">
           <Lines />
+          {/* logo */}
           <div class="container relative z-20 mx-auto py-4">
             <div class="flex items-center justify-between">
               <div class="flex items-center">
@@ -35,6 +37,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             </div>
           </div>
 
+          {/* cta */}
           <div class="container relative z-20 mx-auto flex flex-col justify-center">
             <div class="mx-auto grid max-w-screen-xl px-4 pb-8 pt-12 lg:grid-cols-12 lg:gap-8 lg:py-24 lg:pt-16 xl:gap-0">
               <div class="col-span-7 mr-auto place-self-center">
@@ -86,6 +89,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
         </section>
 
+        {/* newsletter */}
         <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
             <h2 class="mb-4 text-4xl">Subscribe for future updates 🚀</h2>
@@ -116,6 +120,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
         </section>
 
+        {/* guide */}
         <section class="relative border-b border-t border-slate-500 bg-gradient-to-b from-gray-950 to-gray-900 bg-repeat py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl pb-12 pt-12 text-center text-gray-200">
             <h2 class="mb-8 text-5xl font-bold">Need a guide?</h2>
@@ -153,6 +158,8 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             </a>
           </div>
         </section>
+
+        {/* what's included */}
         <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-plus bg-repeat py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl pt-12 text-gray-200">
             <h2 class="mb-8 text-5xl font-bold">What's Included in the Kit?</h2>
@@ -200,6 +207,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
         </section>
 
+        {/* purchase */}
         <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
             <h2 class="text-5xl font-bold">Start Shipping Today</h2>
