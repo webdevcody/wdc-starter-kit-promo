@@ -26,5 +26,8 @@ FROM base
 
 COPY --from=build /app /app
 
+ARG RAILWAY_GIT_COMMIT_SHA
+ENV COMMIT_SHA=${RAILWAY_GIT_COMMIT_SHA}
+
 EXPOSE 3000
 CMD [ "bun", "start" ]

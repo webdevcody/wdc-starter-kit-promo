@@ -45,7 +45,10 @@ export function Layout({
             property="og:image:alt"
             content="The WDC StarterKit social media card image"
           />
-          <link rel="stylesheet" href="/static/styles.css" />
+          <link
+            rel="stylesheet"
+            href={`/static/styles.css?ver=${process.env.COMMIT_SHA}`}
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           {process.env.NODE_ENV !== "production" && (
