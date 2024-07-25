@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import { env } from "../env";
 import type { App } from "../server";
 import { z } from "zod";
+import { GithubIcon, GumroadIcon } from "../components/icons";
 const resend = new Resend(env.EMAIL_SERVER_PASSWORD);
 
 export function MainPage({ flashMessage }: { flashMessage?: string }) {
@@ -27,8 +28,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
                     class="mr-4 h-16 w-16 rounded-full"
                   />
                   <div class="flex flex-col">
-                    <div class="text-xs sm:text-xl">Coming Soon...</div>
-                    <div class="text-lg sm:text-3xl">WDC StarterKit</div>
+                    <div class="text-lg sm:text-3xl">WDC SaaS Starter Kit</div>
                   </div>
                 </a>
               </div>
@@ -39,42 +39,36 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             <div class="mx-auto grid max-w-screen-xl px-4 pb-8 pt-12 lg:grid-cols-12 lg:gap-8 lg:py-24 lg:pt-16 xl:gap-0">
               <div class="col-span-7 mr-auto place-self-center">
                 <h1 class="mb-6 max-w-2xl text-4xl font-semibold leading-none tracking-tight text-white md:text-5xl xl:text-6xl">
-                  🚀 I&apos;m working on the{" "}
+                  🚀 I&apos;ve built the{" "}
                   <span class="italic text-red-400">perfect</span> SaaS starter
                   kit.
                 </h1>
 
                 <h2 class="mb-8 text-2xl font-light">
-                  This Next.js starter kit will enable you to setup your own
-                  SaaS product with monthly subscriptions, including a complete
-                  walkthrough on how to set it all up and maintain it.
+                  This Next.js starter kit includes everything you need to build
+                  a SaaS product. From authentication to analytics, it&apos;s
+                  everything you need to launch your next project.
                 </h2>
 
-                <p class="mb-4 text-3xl">Get Notified When I Launch 🚀</p>
+                <div className="flex gap-4">
+                  <a
+                    href="https://github.com/webdevcody/wdc-saas-starter-kit"
+                    target="_blank"
+                    class="flex w-fit items-center gap-2 rounded bg-white px-6 py-4 text-lg font-normal text-black hover:bg-slate-100"
+                  >
+                    <GithubIcon class="size-6" /> Get the Free Starter Kit
+                  </a>
 
-                <form action="/" method="POST" class="flex gap-2">
-                  <label class="sr-only" htmlFor="email" />
-                  <input
-                    required
-                    type="email"
-                    name="email"
-                    class={cn(
-                      "text w-full max-w-[320px] rounded bg-slate-100 px-2 py-2 text-slate-900 placeholder-slate-600",
-                      {
-                        "border-2 border-red-500": !!flashMessage,
-                      },
-                    )}
-                    id="email"
-                    placeholder="Enter your email address"
-                  />
-                  <button class="flex items-center justify-center gap-2 rounded bg-slate-100 px-3 text-black hover:bg-slate-300">
-                    Subscribe
-                  </button>
-                </form>
-
-                {flashMessage && (
-                  <div class="mb-4 text-red-500">{flashMessage}</div>
-                )}
+                  <a
+                    href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
+                    target="_blank"
+                    class="bg-wdc-blue flex w-fit items-center gap-2 rounded px-6 py-4 text-lg font-normal text-white hover:bg-slate-50 hover:text-black"
+                  >
+                    <GumroadIcon class="size-6" /> Video Walkthroughs
+                    <br />
+                    (early access 50% off)
+                  </a>
+                </div>
               </div>
 
               <div class="col-span-1"></div>
@@ -92,9 +86,76 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
         </section>
 
-        <section class="relative border-b border-t border-slate-400 bg-paper bg-repeat py-12 shadow-sm dark:border-slate-500 dark:bg-gray-950 dark:bg-plus">
-          <div class="container mx-auto max-w-4xl pt-12 dark:text-gray-200">
-            <h2 class="mb-8 text-5xl font-bold">What I&apos;m working on 🛠️</h2>
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
+          <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
+            <h2 class="mb-4 text-4xl">Subscribe for future updates 🚀</h2>
+
+            <form action="/" method="POST" class="flex justify-center gap-2">
+              <label class="sr-only" htmlFor="email" />
+              <input
+                required
+                type="email"
+                name="email"
+                class={cn(
+                  "text w-full max-w-[320px] rounded bg-slate-100 px-4 py-3 text-slate-900 placeholder-slate-600",
+                  {
+                    "border-2 border-red-500": !!flashMessage,
+                  },
+                )}
+                id="email"
+                placeholder="Enter your email address"
+              />
+              <button class="flex items-center justify-center gap-2 rounded bg-white px-3 text-black hover:bg-slate-100">
+                Subscribe
+              </button>
+            </form>
+
+            {flashMessage && (
+              <div class="mb-4 text-red-500">{flashMessage}</div>
+            )}
+          </div>
+        </section>
+
+        <section class="relative border-b border-t border-slate-500 bg-gradient-to-b from-gray-950 to-gray-900 bg-repeat py-12 shadow-sm">
+          <div class="container mx-auto max-w-4xl pb-12 pt-12 text-center text-gray-200">
+            <h2 class="mb-8 text-5xl font-bold">Need a guide?</h2>
+
+            <p class="mb-6 text-xl leading-10">
+              I&apos;m working on a complete walkthrough on how to setup the
+              project including any third party services, hosting, and how to
+              run migrations and add new features, etc.
+            </p>
+
+            <iframe
+              width="100%"
+              height="415"
+              src="https://www.youtube.com/embed/6Z9SvYb0Q5w?si=eu-__ekXU-iGVH8s"
+              title="YouTube video player"
+              frameborder="0"
+              class="mb-12"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+
+            <p class="mb-6 py-4 text-xl leading-10">
+              I am currently working on the video series and will be releasing
+              the videos as I record and edit them. You can purchase the early
+              access to these videos at a discounted price.
+            </p>
+
+            <a
+              href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
+              target="_blank"
+              class="mt-12 rounded bg-white px-6 py-4 text-lg font-normal text-black hover:bg-slate-100"
+            >
+              Purchase the Early Access Video Walkthroughs (50% off - $25)
+            </a>
+          </div>
+        </section>
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-plus bg-repeat py-12 shadow-sm">
+          <div class="container mx-auto max-w-4xl pt-12 text-gray-200">
+            <h2 class="mb-8 text-5xl font-bold">What's Included in the Kit?</h2>
 
             <p class="mb-6 text-xl leading-10">
               For those who watch my channel, you know I work on lot of
@@ -105,9 +166,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
               creating a new online SaaS product.
             </p>
 
-            <p class="mb-8 text-xl leading-10">
-              Buckle up, it&apos;s going to be BIG; I plan to include:
-            </p>
+            <p class="mb-8 text-xl leading-10">Buckle up, it includes:</p>
 
             <ul class="mb-12 grid grid-cols-2 gap-4 md:mx-12 md:grid-cols-3">
               <li>🚦 Next.js 14</li>
@@ -133,17 +192,25 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
               <li>🚀 And More!</li>
             </ul>
 
-            <p class="mb-6 text-xl leading-10">
-              Additionally, I&apos;m working on a complete walkthrough on how to
-              setup the project including any third party services, hosting, and
-              how to run migrations and add new features, etc.
-            </p>
-
             <p class="mb-24 mt-24 text-center text-xl leading-10">
               I don&apos;t want to sell you code. I want to{" "}
               <strong>teach you</strong> how to build, launch, and iterate on
               your product. I&apos;m excited to help you build!
             </p>
+          </div>
+        </section>
+
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
+          <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
+            <h2 class="text-5xl font-bold">Start Shipping Today</h2>
+
+            <a
+              href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
+              target="_blank"
+              class="inline-block rounded bg-white px-6 py-4 text-lg font-normal text-black hover:bg-slate-100"
+            >
+              Purchase the Video Walkthroughs
+            </a>
           </div>
         </section>
       </>
