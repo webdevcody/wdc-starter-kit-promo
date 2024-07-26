@@ -2,16 +2,15 @@
 // before the service runs.
 
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { migrate } from "drizzle-orm/libsql/migrator";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql/driver";
 
-const pg = postgres(process.env.DATABASE_URL!);
-const database = drizzle(pg);
+const client = createClient({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.DATABASE_AUTH_TOKEN!,
+});
 
-async function main() {
-  await migrate(database, { migrationsFolder: ".." });
-  await pg.end();
-}
+const db = drizzle(client);
 
-main();
+migrate(db, { migrationsFolder: ".." });
