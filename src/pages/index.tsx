@@ -181,7 +181,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
               <li>🌑 ShadCN</li>
               <li>🌈 Tailwind CSS</li>
               <li>📝 Typescript</li>
-              <li>🔒 Authentication (Next-Auth) </li>
+              <li>🔒 Authentication (Lucia Auth) </li>
               <li>🌐 Google & Github Login </li>
               <li>🔗 Magic Link Login </li>
               <li>👥 Role Based Authorization </li>

@@ -31,9 +31,10 @@
     "livereload": "livereload -d -e 'tsx,ts,css' ./src",
     "tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css --watch",
     "build:tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css",
-    "db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
+    "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "db:up": "drizzle-kit up",
     "db:migrate": "bun ./src/db/migrate.ts",
-    "db:generate": "drizzle-kit generate:sqlite --config=drizzle.config.ts",
+    "db:generate": "drizzle-kit generate --config=drizzle.config.ts",
     "db:studio": "drizzle-kit studio"
   }
 }

@@ -25,9 +25,13 @@ RUN bun build:tailwind
 FROM base
 
 COPY --from=build /app /app
+COPY --from=build /app/drizzle ./drizzle
+COPY --from=build /app/run.sh ./run.sh
+
+RUN cd drizzle/migrate && bun i
 
 ARG RAILWAY_GIT_COMMIT_SHA
 ENV COMMIT_SHA=${RAILWAY_GIT_COMMIT_SHA}
 
 EXPOSE 3000
-CMD [ "bun", "start" ]
+CMD [ "./run.sh" ]
