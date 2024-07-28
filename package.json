@@ -26,8 +26,8 @@
   },
   "scripts": {
     "dev": "run-p server tailwind livereload",
-    "server": "npm run db:migrate && bun --watch src/server.tsx",
-    "start": "npm run db:migrate && bun src/server.tsx",
+    "server": "bun run db:migrate && bun --watch src/server.tsx",
+    "start": "bun run db:migrate && bun src/server.tsx",
     "livereload": "livereload -d -e 'tsx,ts,css' ./src",
     "tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css --watch",
     "build:tailwind": "tailwindcss -i src/styles/index.css -o static/styles.css",
