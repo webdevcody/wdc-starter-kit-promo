@@ -65,7 +65,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
                   <a
                     href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
                     target="_blank"
-                    class="bg-wdc-blue flex w-fit items-center gap-2 rounded px-6 py-4 text-lg font-normal text-white hover:bg-slate-50 hover:text-black"
+                    class="flex w-fit items-center gap-2 rounded bg-wdc-blue px-6 py-4 text-lg font-normal text-white hover:bg-slate-50 hover:text-black"
                   >
                     <GumroadIcon class="size-6" /> Video Walkthroughs
                     <br />
@@ -229,6 +229,20 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
 export function registerLanding(app: App) {
   app.get("/", (c) => {
     const flashMessage = popFlashMessage(c);
+
+    if (process.env.NODE_ENV === "production") {
+      fetch("https://projectplannerai.com/api/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          key: "user viewed landing page",
+          projectId: "j57cpv51pmj7q0n20rqgn1q6ax6q3vrx",
+        }),
+      });
+    }
+
     return c.html(<MainPage flashMessage={flashMessage} />);
   });
 
