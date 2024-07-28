@@ -230,10 +230,7 @@ export function registerLanding(app: App) {
   app.get("/", (c) => {
     const flashMessage = popFlashMessage(c);
 
-    console.log("NODE_ENV", process.env.NODE_ENV);
-
     if (process.env.NODE_ENV === "production") {
-      console.log("sending event");
       fetch("https://projectplannerai.com/api/events", {
         method: "POST",
         headers: {

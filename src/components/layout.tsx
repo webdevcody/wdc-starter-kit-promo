@@ -14,7 +14,12 @@ export function Layout({
           <title>{title}</title>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="48x48"
+            href="/static/favicon.ico"
+          />
           <meta
             name="keywords"
             content="next.js, starter kit, saas, ecommerce, digital products, saas code kit, indie hacking, indie hacker kit, micro saas, entrepreneurship, Code Starter Kit, SaaS Product Launch, Code Documentation Tutorial, Beginner Coding Kit, Start-up SaaS Kit, Coding Guides and Resources, Video Tutorials for Coding, Beginner SaaS Guide, Launch your First SaaS, Step-by-step Coding Kit, SaaS Launch Kit, Software as a Service Starter, Easy Code Launch Kit, Coding Skills for SaaS, Starter Kit for SaaS, Code, Document, Launch, Comprehensive Coding Starter Kit, Master SaaS Product Launch, SaaS Documentation Tutorial, First-Time Coders Kit, SaaS coding course, Initiate SaaS Journey, Seamless SaaS Launch Guide, First SaaS Product Guidance, Bootstrap SaaS Tutorial, Ultimate SaaS Starter Pack, Learning Guide for SaaS, DIY SaaS Kit, Code your SaaS Product, All-in-one Coding Starter Kit"
