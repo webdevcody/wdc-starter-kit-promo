@@ -31,13 +31,4 @@ process.on("uncaughtException", (error) => {
   console.error("Uncaught Exception:", error);
 });
 
-setInterval(() => {
-  const usage = process.memoryUsage();
-  console.log({
-    rss: usage.rss,
-    heapTotal: usage.heapTotal,
-    heapUsed: usage.heapUsed,
-  });
-}, 60000);
-
 export default app;
