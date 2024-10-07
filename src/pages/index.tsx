@@ -8,6 +8,7 @@ import { env } from "../env";
 import type { App } from "../server";
 import { z } from "zod";
 import { GithubIcon, GumroadIcon } from "../components/icons";
+import { html } from "hono/html";
 const resend = new Resend(env.EMAIL_SERVER_PASSWORD);
 
 export function MainPage({ flashMessage }: { flashMessage?: string }) {
@@ -131,17 +132,9 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
               run migrations and add new features, etc.
             </p>
 
-            <iframe
-              width="100%"
-              height="415"
-              src="https://www.youtube.com/embed/6Z9SvYb0Q5w?si=eu-__ekXU-iGVH8s"
-              title="YouTube video player"
-              frameborder="0"
-              class="mb-12"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+            <div id="video-container" class="mb-12">
+              {/* The iframe will be inserted here by JavaScript */}
+            </div>
 
             <p class="mb-6 py-4 text-xl leading-10">
               I am currently working on the video series and will be releasing
@@ -152,7 +145,8 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             <a
               href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
               target="_blank"
-              class="mt-12 rounded bg-white px-6 py-4 text-lg font-normal text-black hover:bg-slate-100"
+              rel="noopener noreferrer"
+              class="mt-12 inline-block rounded bg-white px-6 py-4 text-lg font-semibold text-black transition-colors duration-300 hover:bg-slate-100"
             >
               Purchase the Early Access Video Walkthroughs (50% off - $25)
             </a>
@@ -221,6 +215,46 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             </a>
           </div>
         </section>
+
+        {html` <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            var options = {
+              root: null,
+              rootMargin: "0px",
+              threshold: 0.1,
+            };
+
+            var observer = new IntersectionObserver(function (
+              entries,
+              observer,
+            ) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  var container = entry.target;
+                  var iframe = document.createElement("iframe");
+                  iframe.src =
+                    "https://www.youtube.com/embed/6Z9SvYb0Q5w?si=eu-__ekXU-iGVH8s";
+                  iframe.width = "100%";
+                  iframe.height = "415";
+                  iframe.title = "YouTube video player";
+                  iframe.frameBorder = "0";
+                  iframe.allow =
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                  iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                  iframe.allowFullscreen = true;
+
+                  container.appendChild(iframe);
+                  observer.unobserve(container);
+                }
+              });
+            }, options);
+
+            var videoContainer = document.getElementById("video-container");
+            if (videoContainer) {
+              observer.observe(videoContainer);
+            }
+          });
+        </script>`}
       </>
     </Layout>
   );
