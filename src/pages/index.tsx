@@ -21,7 +21,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           {/* logo */}
           <div class="container relative z-20 mx-auto py-4">
             <div class="flex items-center justify-between">
-              <div class="flex items-center">
+              <div class="flex items-center px-8">
                 <a href="/" class="flex items-center gap-1 hover:text-blue-100">
                   <img
                     src="/static/wdc.jpeg"
@@ -39,7 +39,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
 
           {/* cta */}
-          <div class="container relative z-20 mx-auto flex flex-col justify-center">
+          <div class="container relative z-20 mx-auto flex flex-col justify-center px-8">
             <div class="mx-auto grid max-w-screen-xl px-4 pb-8 pt-12 lg:grid-cols-12 lg:gap-8 lg:py-24 lg:pt-16 xl:gap-0">
               <div class="col-span-7 mr-auto place-self-center">
                 <h1 class="mb-6 max-w-2xl text-4xl font-semibold leading-none tracking-tight text-white md:text-5xl xl:text-6xl">
@@ -54,7 +54,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
                   everything you need to launch your next project.
                 </h2>
 
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4 sm:flex-nowrap md:flex-wrap">
                   <a
                     href="https://github.com/webdevcody/wdc-saas-starter-kit"
                     target="_blank"
@@ -79,7 +79,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
 
               <div class="col-span-4 w-full">
                 <img
-                  class="hidden w-full rounded-xl shadow-xl md:block"
+                  class="hidden w-full rounded-xl shadow-xl lg:block"
                   width="300"
                   height="200"
                   src="/static/computer.jpeg"
@@ -91,7 +91,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
         </section>
 
         {/* newsletter */}
-        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat px-8 py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
             <h2 class="mb-4 text-4xl">Subscribe for future updates 🚀</h2>
 
@@ -122,7 +122,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
         </section>
 
         {/* guide */}
-        <section class="relative border-b border-t border-slate-500 bg-gradient-to-b from-gray-950 to-gray-900 bg-repeat py-12 shadow-sm">
+        <section class="relative border-b border-t border-slate-500 bg-gradient-to-b from-gray-950 to-gray-900 bg-repeat px-8 py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl pb-12 pt-12 text-center text-gray-200">
             <h2 class="mb-8 text-5xl font-bold">Need a guide?</h2>
 
@@ -154,7 +154,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
         </section>
 
         {/* what's included */}
-        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-plus bg-repeat py-12 shadow-sm">
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-plus bg-repeat px-8 py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl pt-12 text-gray-200">
             <h2 class="mb-8 text-5xl font-bold">What's Included in the Kit?</h2>
 
@@ -202,9 +202,9 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
         </section>
 
         {/* purchase */}
-        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat py-12 shadow-sm">
+        <section class="relative border-b border-t border-slate-500 bg-gray-950 bg-space bg-repeat px-8 py-12 shadow-sm">
           <div class="container mx-auto max-w-4xl space-y-12 pb-12 pt-12 text-center text-gray-200">
-            <h2 class="text-5xl font-bold">Start Shipping Today</h2>
+            <h2 class="text-3xl font-bold md:text-5xl">Start Shipping Today</h2>
 
             <a
               href="https://webdevcody.gumroad.com/l/wdc-saas-starter-kit-walkthrough"
