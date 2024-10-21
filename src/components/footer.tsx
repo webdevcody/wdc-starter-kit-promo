@@ -19,7 +19,7 @@ export function Footer() {
           <a href="https://github.com/webdevcody" target="_blank">
             <GithubIcon className="h-10 w-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
           </a>
-          <a href="https://discord.gg/4kGbBaa" target="_blank">
+          <a href="https://discord.gg/N2uEyp7Rfu" target="_blank">
             <DiscordIcon className="h-10 w-10 hover:fill-slate-600 dark:fill-slate-200 dark:hover:fill-blue-400" />
           </a>
         </div>
