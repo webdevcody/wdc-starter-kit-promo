@@ -134,15 +134,6 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
 
             <div id="video-container" class="mb-12">
               {/* The iframe will be inserted here by JavaScript */}
-              <iframe
-                width="100%"
-                height="315"
-                src="https://www.youtube.com/embed/6Z9SvYb0Q5w?si=eu-__ekXU-iGVH8s"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
             </div>
 
             <p class="mb-6 py-4 text-xl leading-10">
@@ -225,7 +216,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
           </div>
         </section>
 
-        {/* {html` <script>
+        {html` <script>
           document.addEventListener("DOMContentLoaded", function () {
             var options = {
               root: null,
@@ -263,7 +254,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
               observer.observe(videoContainer);
             }
           });
-        </script>`} */}
+        </script>`}
       </>
     </Layout>
   );
