@@ -170,7 +170,7 @@ export function MainPage({ flashMessage }: { flashMessage?: string }) {
             <p class="mb-8 text-xl leading-10">Buckle up, it includes:</p>
 
             <ul class="mb-12 grid grid-cols-2 gap-4 md:mx-12 md:grid-cols-3">
-              <li>🚦 Next.js 14</li>
+              <li>🚦 Next.js 15</li>
               <li>📦 DrizzleORM</li>
               <li>🌑 ShadCN</li>
               <li>🌈 Tailwind CSS</li>
