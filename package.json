@@ -4,6 +4,7 @@
   "type": "module",
   "dependencies": {
     "@libsql/client": "^0.15.7",
+    "@tailwindcss/cli": "^4.1.7",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drizzle-kit": "^0.31.1",

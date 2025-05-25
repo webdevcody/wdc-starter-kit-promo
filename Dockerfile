@@ -26,6 +26,7 @@ FROM base
 
 COPY --from=build /app /app
 COPY --from=build /app/drizzle ./drizzle
+COPY --from=build /app/run.sh ./run.sh
 COPY --from=build /app/drizzle.config.ts ./drizzle.config.ts
 
 ARG RAILWAY_GIT_COMMIT_SHA
