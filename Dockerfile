@@ -5,18 +5,13 @@ WORKDIR /app
 
 ENV NODE_ENV="production"
 
-ARG DATABASE_URL
-ARG DATABASE_AUTH_TOKEN
-ARG RESEND_AUDIENCE_ID
-ARG EMAIL_SERVER_PASSWORD
-
 FROM base as build
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential pkg-config python-is-python3
 
 COPY --link bun.lockb package.json ./
-RUN bun install --ci
+RUN bun install --lockfile-only
 
 COPY --link . .
 
